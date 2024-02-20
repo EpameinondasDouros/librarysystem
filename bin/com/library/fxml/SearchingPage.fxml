@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="searchPage" spacing="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.controller.SearchController">
+    <TextField fx:id="searchField" promptText="Enter book title..."/>
+    <Button text="Search" onAction="#performSearch"/>
+    <ListView fx:id="resultsListView"/>
+</VBox>

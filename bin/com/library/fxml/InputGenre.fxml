@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox fx:controller="com.library.controller.InputGenreController" xmlns:fx="http://javafx.com/fxml" spacing="10" alignment="CENTER" prefHeight="600" prefWidth="500">
+    <TextField fx:id="nameField" promptText="Category Name"/>
+    <TextField fx:id="descriptionField" promptText="Category Description"/>
+    <Button text="Submit" onAction="#submitGenreDetails"/>
+    <Label fx:id="detailsLabel"/>
+</VBox>

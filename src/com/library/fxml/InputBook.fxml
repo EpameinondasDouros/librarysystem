@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox fx:controller="com.library.controller.InputBookController" xmlns:fx="http://javafx.com/fxml" spacing="10" alignment="CENTER" prefHeight="600" prefWidth="500">
+    <TextField fx:id="titleField" promptText="Title"/>
+    <TextField fx:id="authorField" promptText="Author"/>
+    <TextField fx:id="publisherField" promptText="Publisher"/>
+    <TextField fx:id="isbnField" promptText="ISBN"/>
+    <TextField fx:id="publishYearField" promptText="Publish Year"/>
+    <TextField fx:id="categoryField" promptText="Category"/>
+    <TextField fx:id="numberOfCopiesField" promptText="Number Of Copies"/>
+    <Button text="Submit" onAction="#submitBookDetails"/>
+    <Label fx:id="detailsLabel"/>
+</VBox>
