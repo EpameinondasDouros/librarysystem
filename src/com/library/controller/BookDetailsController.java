@@ -10,6 +10,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 import com.library.model.Book;
+import com.library.model.Review;
+import com.library.model.SessionManager;
 
 public class BookDetailsController {
 
@@ -77,22 +79,29 @@ public class BookDetailsController {
     }
 
     @FXML
-    private void submitComment() {
+    private void submitReview() {
         String comment = commentField.getText();
-        if (!comment.isEmpty()) {
-            currentBook.addComment(comment);
-            commentsObservableList.add(comment); // Update the ListView
-            commentField.clear(); // Clear the input field
-        }
-    }
-
-    @FXML
-    private void submitRating() {
         Integer rating = ratingComboBox.getValue();
-        if (rating != null) {
-            currentBook.addRating(rating);
-            averageRatingLabel.setText(String.format("Average Rating: %.2f", currentBook.getRating())); // Update the average rating
+
+        if (comment.isEmpty() || rating == null) {
+            // Handle the case where either comment or rating is not provided
+            System.out.println("Both comment and rating are required.");
+            return;
         }
+
+        // Assuming addReview method exists and properly updates the book with a new review
+        Review newReview = new Review(comment, rating,SessionManager.getInstance().getCurrentUser(), currentBook); // currentUser needs to be defined based on your user management logic
+        currentBook.addReview(newReview);
+
+        // Optionally, update the UI to reflect the new review
+        // For example, refresh the list of reviews and update the average rating label
+        averageRatingLabel.setText(String.format("Average Rating: %.2f", currentBook.calculateAverageRating()));
+
+        currentBook.setRating(currentBook.calculateAverageRating());
+
+        // Clear the input fields after submission
+        commentField.clear();
+        ratingComboBox.getSelectionModel().clearSelection();
     }
 
 

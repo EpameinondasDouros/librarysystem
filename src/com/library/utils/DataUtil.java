@@ -122,4 +122,31 @@ public class DataUtil {
         }
         return userList;
     }
+
+    public static void saveReviews(List<Review> userList, String filename) {
+        if (!filename.endsWith(".ser")) {
+            filename += ".ser";
+        }
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))) {
+            out.writeObject(userList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static List<Review> loadReviews(String filename) {
+        if (!filename.endsWith(".ser")) {
+            filename += ".ser";
+        }
+        List<Review> reviewList = null;
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
+            Object data = in.readObject();
+            if (data instanceof List<?>) {
+                reviewList = (List<Review>) data; // This unchecked cast warning is normal but should be safe if the file contains Loans
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            System.err.println("Error loading loans");
+        }
+        return reviewList;
+    }
 }

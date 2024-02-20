@@ -27,14 +27,12 @@
     <ListView fx:id="commentsListView"/>
     <HBox spacing="10">
         <TextField fx:id="commentField" promptText="Enter your comment"/>
-        <Button text="Submit Comment" onAction="#submitComment"/>
-    </HBox>
-    <HBox spacing="10">
         <Label text="Rating:"/>
         <ComboBox fx:id="ratingComboBox"/>
-        <Button text="Submit Rating" onAction="#submitRating"/>
+        <Button text="Submit Review" onAction="#submitReview"/>
     </HBox>
     <Label fx:id="averageRatingLabel" text="Average Rating: "/>
+
     <Button text="Save" onAction="#saveBookDetails"/>  
 </VBox>
 

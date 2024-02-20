@@ -15,6 +15,7 @@ public class Book implements Serializable{
     private double rating = 0.0;
     private int ratingCount = 0;
     private List<String> comments = new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
 
     // Constructor
     public Book(String title, String author, String publisher, String isbn, 
@@ -82,7 +83,7 @@ public class Book implements Serializable{
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 
@@ -124,6 +125,18 @@ public class Book implements Serializable{
     public List<String> getComments() {
         return comments;
     }
+
+    public double calculateAverageRating() {
+        return reviews.stream()
+                      .mapToInt(Review::getRating) // Convert Review objects to int stream of ratings
+                      .average()                   // Calculate the average of the stream
+                      .orElse(0);                  // Return 0 if the stream is empty
+    }
+
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
+    
 
 
 
