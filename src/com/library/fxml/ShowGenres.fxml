@@ -5,6 +5,6 @@
 
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.controller.ShowGenresController" 
 stylesheets="@../css/style.css" prefHeight="600" prefWidth="500">
-    <ListView fx:id="genresListView" VBox.vgrow="ALWAYS"//>
+    <ListView fx:id="genresListView" VBox.vgrow="ALWAYS"/>
 </VBox>
 

@@ -1,10 +1,14 @@
 package com.library.model;
 
-public class Review {
+import java.io.Serializable;
+
+public class Review implements Serializable{
+    private static final long serialVersionUID = 1236969L;
     private String comment;
     private int rating;
     private User user;
     private Book book;
+    private int numOfReviews;
 
     // Constructor
     public Review(String comment, int rating, User user, Book book) {

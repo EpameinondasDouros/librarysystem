@@ -23,6 +23,7 @@
     <TextField fx:id="categoryField"/>
     <Label text="Number Of Copies"/>
     <TextField fx:id="numberOfCopiesField"/>
+    
     <Label text="Comments"/>
     <ListView fx:id="commentsListView"/>
     <HBox spacing="10">

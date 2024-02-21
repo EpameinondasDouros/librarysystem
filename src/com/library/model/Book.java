@@ -15,8 +15,8 @@ public class Book implements Serializable{
     private double rating = 0.0;
     private int ratingCount = 0;
     private List<String> comments = new ArrayList<>();
-    private List<Review> reviews;
-
+    private List<Review> reviews = new ArrayList<>();
+    private int numOfRatings;
     // Constructor
     public Book(String title, String author, String publisher, String isbn, 
                 int publishYear, int numberOfCopies, Genre genre) {
@@ -27,6 +27,7 @@ public class Book implements Serializable{
         this.publishYear = publishYear;
         this.numberOfCopies = numberOfCopies;
         this.rating = 0;
+        this.numOfRatings=0;
         this.genre = genre; // Initial rating is set to 0
     }
 
@@ -83,15 +84,19 @@ public class Book implements Serializable{
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(double rating, int count) {
         this.rating = rating;
+        if (count==-1){
+            this.numOfRatings++;
+        }else{
+            this.numOfRatings=count;}
     }
 
-    // Additional methods to manipulate the book's data can be added here
-    // For example, a method to update the book's rating
-    public void updateRating(int newRating) {
-        this.rating = newRating;
-    }
+    // // Additional methods to manipulate the book's data can be added here
+    // // For example, a method to update the book's rating
+    // public void updateRating(int newRating) {
+    //     this.rating = newRating;
+    // }
 
     public Genre getGenre() {
         return genre;
@@ -119,6 +124,7 @@ public class Book implements Serializable{
         totalRating += newRating;
         this.ratingCount++;
         this.rating = totalRating / this.ratingCount;
+        this.numOfRatings++;
     }
 
     // Getters for comments and rating
@@ -148,7 +154,8 @@ public class Book implements Serializable{
            "\nISBN: " + isbn +
            "\nPublish Year: " + publishYear +
            "\nNumber of Copies: " + numberOfCopies +
-           "\nRating: " + rating;
+           "\nRating: " + rating +
+           "\nNumber of Ratings" + numOfRatings;
 }
 
 

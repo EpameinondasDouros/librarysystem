@@ -7,6 +7,7 @@ import java.util.List;
 import com.library.model.Book;
 import com.library.model.Genre;
 import com.library.model.Loan;
+import com.library.model.Review;
 import com.library.model.User;
 
 import javafx.beans.binding.ListBinding;
@@ -111,8 +112,50 @@ public class CreateData {
         loans.add(new Loan(epadouros, aTaleOfTwoCities,null ));
         loans.add(new Loan(medialab, aTaleOfTwoCities,null ));
         
+        
+
+        List<Review> reviews = new ArrayList<>();
+
+        reviews.add(new Review("Arxiko", 4, amandasmith, theGirlWithTheDragonTattoo));
+        // Adding more dummy reviews
+        reviews.add(new Review("Captivating story!", 5, sarahwilson, harryPotterSorcerersStone));
+        reviews.add(new Review("Enjoyed every page.", 4, michaelclark, theHobbit));
+        reviews.add(new Review("A classic masterpiece.", 5, jenniferlee, prideAndPrejudice));
+        reviews.add(new Review("Thrilling plot twists.", 4, davidbrown, theHungerGames));
+        reviews.add(new Review("Fascinating world-building.", 5, epadouros, dune));
+        reviews.add(new Review("Compelling characters.", 4, maryjones, theGreatGatsby));
+        reviews.add(new Review("Couldn't put it down!", 5, johnsmith, theMartian));
+        reviews.add(new Review("Timeless classic.", 5, sarahwilson, aTaleOfTwoCities));
+        reviews.add(new Review("Suspenseful and gripping.", 4, michaelclark, malteseFalcon));
+        reviews.add(new Review("Thought-provoking.", 4, jenniferlee, the1984));
+        // Adding more dummy reviews
+        reviews.add(new Review("Riveting from start to finish.", 5, davidbrown, harryPotterSorcerersStone));
+        reviews.add(new Review("An epic adventure!", 5, epadouros, theHobbit));
+        reviews.add(new Review("Beautifully written.", 4, johnsmith, prideAndPrejudice));
+        reviews.add(new Review("Page-turner!", 4, maryjones, theMartian));
+        reviews.add(new Review("Compelling narrative.", 5, sarahwilson, theGreatGatsby));
+        reviews.add(new Review("A must-read.", 5, michaelclark, aTaleOfTwoCities));
+        reviews.add(new Review("Intriguing mystery.", 4, jenniferlee, malteseFalcon));
+        reviews.add(new Review("Immersive world-building.", 5, davidbrown, theHungerGames));
+        reviews.add(new Review("Heartwarming story.", 4, epadouros, dune));
+        reviews.add(new Review("Masterfully crafted.", 5, johnsmith, catcherInTheRye));
+        // Adding more dummy reviews
+        reviews.add(new Review("Couldn't stop reading!", 5, maryjones, harryPotterSorcerersStone));
+        reviews.add(new Review("A timeless classic.", 5, sarahwilson, theGreatGatsby));
+        reviews.add(new Review("Engrossing storyline.", 4, michaelclark, dune));
+        reviews.add(new Review("Suspenseful and gripping.", 4, jenniferlee, theHungerGames));
+        reviews.add(new Review("Brilliantly written.", 5, epadouros, aTaleOfTwoCities));
+        reviews.add(new Review("Kept me on the edge of my seat.", 4, johnsmith, malteseFalcon));
+        reviews.add(new Review("Thought-provoking.", 5, davidbrown, the1984));
+        reviews.add(new Review("A must-read for fantasy fans!", 5, maryjones, theHobbit));
+        reviews.add(new Review("Captivating characters.", 4, sarahwilson, theMartian));
+        reviews.add(new Review("Spellbinding tale.", 5, michaelclark, catcherInTheRye));
 
 
+        for(Book book : books) {
+            double ratings=BookManager.getInstance().calculateAverageRating(book,reviews);
+            System.out.println(ratings + book.toString());
+        }
         // Add more books as needed
 
         // Now serialize the list to a file
@@ -120,6 +163,7 @@ public class CreateData {
         DataUtil.saveGenres(genres, "genres.ser"); // Assuming BookDataUtil is implemented as previously discussed
         DataUtil.saveLoans(loans, "loans.ser"); // Assuming BookDataUtil is implemented as previously discussed
         DataUtil.saveUsers(users, "users.ser"); // Assuming BookDataUtil is implemented as previously discussed
+        DataUtil.saveReviews(reviews, "reviews.ser"); // Assuming BookDataUtil is implemented as previously discussed
     }
 
     

@@ -22,7 +22,6 @@ public class DataUtil {
             e.printStackTrace();
         }
     }
-
     // Method to load and deserialize a list of books from a .ser file
     public static List<Book> loadBooks(String filename) {
         if (!filename.endsWith(".ser")) {

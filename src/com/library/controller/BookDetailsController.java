@@ -9,9 +9,12 @@ import javafx.scene.control.ListView;
 // import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.util.List;
+
 import com.library.model.Book;
 import com.library.model.Review;
 import com.library.model.SessionManager;
+import com.library.utils.BookManager;
 
 public class BookDetailsController {
 
@@ -22,10 +25,11 @@ public class BookDetailsController {
     @FXML private TextField publishYearField;
     @FXML private TextField categoryField;
     @FXML private TextField numberOfCopiesField;
+
     @FXML private TextField commentField;
     @FXML private Label averageRatingLabel;
 
-    @FXML private ListView<String> commentsListView;
+    @FXML private ListView commentsListView;
     @FXML private ComboBox<Integer> ratingComboBox;
 
     private ObservableList<String> commentsObservableList = FXCollections.observableArrayList();
@@ -40,6 +44,11 @@ public class BookDetailsController {
     }
 
     public void initData(Book book) {
+
+        // List<Review> bookSpecificReviews = BookManager.getInstance().getReviews(currentBook);
+        // ObservableList<Review> viewableReviews = FXCollections.observableArrayList(bookSpecificReviews);
+        // commentsListView.setText(BookManager.getInstance().getReviews(currentBook).toString());
+
         this.currentBook = book;
         titleField.setText(book.getTitle());
         authorField.setText(book.getAuthor());
@@ -47,12 +56,12 @@ public class BookDetailsController {
         isbnField.setText(book.getIsbn());
         publishYearField.setText(String.valueOf(book.getPublishYear())); // Assuming publishYear is an int
         numberOfCopiesField.setText(String.valueOf(book.getNumberOfCopies()));
-        commentField.setText(String.valueOf(book.getComments()));
-        averageRatingLabel.setText(String.valueOf(book.getRating()));
-        categoryField.setText(String.valueOf(book.getGenre())); // Assuming numberOfCopies is an int
-        // Set other details as necessary
-        commentsObservableList.setAll(book.getComments()); // Assuming getComments returns List<String>
-        commentsListView.setItems(commentsObservableList);
+        categoryField.setText(String.valueOf(book.getGenre()));
+        
+        // commentField.setText(String.valueOf(book.getComments()));
+        
+        // commentsObservableList.setAll(BookManager.getInstance().getReviews(currentBook)); // Assuming getComments returns List<String>
+        // commentsListView.setItems(BookManager.getInstance().getReviews(currentBook).toString().toList);
 
         // Assuming getRating returns a double or similar
         averageRatingLabel.setText(String.format("Average Rating: %.2f", book.getRating()));
@@ -90,18 +99,18 @@ public class BookDetailsController {
         }
 
         // Assuming addReview method exists and properly updates the book with a new review
-        Review newReview = new Review(comment, rating,SessionManager.getInstance().getCurrentUser(), currentBook); // currentUser needs to be defined based on your user management logic
-        currentBook.addReview(newReview);
-
+        BookManager.getInstance().addReview(comment, rating,SessionManager.getInstance().getCurrentUser(), currentBook); // currentUser needs to be defined based on your user management logic
+        List<Review> reviews=BookManager.getInstance().getAllReviews();
         // Optionally, update the UI to reflect the new review
         // For example, refresh the list of reviews and update the average rating label
-        averageRatingLabel.setText(String.format("Average Rating: %.2f", currentBook.calculateAverageRating()));
+        averageRatingLabel.setText(String.format("Average Rating: %.2f", BookManager.getInstance().calculateAverageRating(currentBook,reviews)));
 
-        currentBook.setRating(currentBook.calculateAverageRating());
+        currentBook.setRating(BookManager.getInstance().calculateAverageRating(currentBook,reviews),-1);
 
         // Clear the input fields after submission
         commentField.clear();
         ratingComboBox.getSelectionModel().clearSelection();
+        // updateCommentsListView(currentBook);
     }
 
 

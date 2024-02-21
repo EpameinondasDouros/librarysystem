@@ -2,7 +2,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.*?>
-
+<?import javafx.scene.control.ComboBox?>
 <VBox fx:controller="com.library.controller.InputBookController" xmlns:fx="http://javafx.com/fxml" spacing="10" alignment="CENTER" prefHeight="600" prefWidth="500">
     <TextField fx:id="titleField" promptText="Title"/>
     <TextField fx:id="authorField" promptText="Author"/>
@@ -11,6 +11,7 @@
     <TextField fx:id="publishYearField" promptText="Publish Year"/>
     <TextField fx:id="categoryField" promptText="Category"/>
     <TextField fx:id="numberOfCopiesField" promptText="Number Of Copies"/>
+    <ComboBox fx:id="genreComboBox" />
     <Button text="Submit" onAction="#submitBookDetails"/>
     <Label fx:id="detailsLabel"/>
 </VBox>

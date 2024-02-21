@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import java.time.LocalDate;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +25,7 @@ public class BookManager {
     private List<User> users;
     private User currentUser;
 
-    private List<Review> reviews = new ArrayList<>();
+    private List<Review> reviews;
 
     // Private constructor to prevent instantiation
     BookManager() {
@@ -44,6 +45,10 @@ public class BookManager {
         }
         users=DataUtil.loadUsers("users.ser");
         if (users == null) {
+            users = new ArrayList<>();
+        }
+        reviews=DataUtil.loadReviews("reviews.ser");
+        if (reviews == null) {
             users = new ArrayList<>();
         }
     }
@@ -112,7 +117,10 @@ public class BookManager {
     }
 
     public List<Genre> getGenres() {
-        return genres;
+        if (this.genres == null) {
+            return new ArrayList<>(); // Return an empty list instead of null
+        }
+        return new ArrayList<>(this.genres);
     }
 
     public List<Loan> getLoans() {
@@ -145,7 +153,10 @@ public class BookManager {
         System.out.println(rating);
         System.out.println(user.toString());
         System.out.println(book.toString());
-        reviews.add(new Review(comment, rating,SessionManager.getInstance().getCurrentUser(),book));
+        
+        Review newReview=new Review(comment, rating,SessionManager.getInstance().getCurrentUser(),book);
+        reviews.add(newReview);
+        DataUtil.saveReviews(reviews, "reviews.ser");
     }
 
     // Method to get all reviews of the book
@@ -156,15 +167,44 @@ public class BookManager {
                         .collect(Collectors.toList());
         }
 
-    public double calculateAverageRating(Book targetBook) {
+    public List<Review> getAllReviews() {
+        // Filter reviews for the specified book
+        return reviews;
+    }
+
+    public double calculateAverageRating(Book targetBook, List<Review> reviews) {
+        
         // Filter reviews for the target book and calculate the average rating
-        return reviews.stream()
+        double averageRating = reviews.stream()
                         .filter(review -> review.getBook().equals(targetBook))
                         .mapToInt(Review::getRating)
                         .average()
                         .orElse(0); // Return 0 if there are no reviews for the book
+        
+        long reviewCount = reviews.stream()
+                        .filter(review -> review.getBook().equals(targetBook))
+                        .count();
+
+        targetBook.setRating(averageRating,(int)reviewCount);
+                        
+        return averageRating;
         }
 
+    public Genre getGenreByName(String name, List<Genre> genresList) {
+        return genresList.stream()
+                         .filter(genre -> genre.getName().equals(name))
+                         .findFirst()
+                         .orElse(null); // Return null if no match is found
+    }
+        
+
+    // Method to find and return the top 5 rated books
+    public List<Book> getTopRatedBooks() {
+        return books.stream()
+                .sorted(Comparator.comparingDouble(Book::getRating).reversed()) // Sort books by rating in descending order
+                .limit(5) // Limit to top 5
+                .collect(Collectors.toList()); // Collect the result into a list
+    }
     
 
 }
