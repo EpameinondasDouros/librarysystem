@@ -141,6 +141,10 @@ public class BookManager {
 
     // Method to add a comment and rating together
     public void addReview(String comment, int rating,User user,Book book) {
+        System.out.println(comment);
+        System.out.println(rating);
+        System.out.println(user.toString());
+        System.out.println(book.toString());
         reviews.add(new Review(comment, rating,SessionManager.getInstance().getCurrentUser(),book));
     }
 
@@ -152,12 +156,14 @@ public class BookManager {
                         .collect(Collectors.toList());
         }
 
-    public double calculateAverageRating() {
+    public double calculateAverageRating(Book targetBook) {
+        // Filter reviews for the target book and calculate the average rating
         return reviews.stream()
-                      .mapToInt(Review::getRating) // Convert Review objects to int stream of ratings
-                      .average()                   // Calculate the average of the stream
-                      .orElse(0);                  // Return 0 if the stream is empty
-    }
+                        .filter(review -> review.getBook().equals(targetBook))
+                        .mapToInt(Review::getRating)
+                        .average()
+                        .orElse(0); // Return 0 if there are no reviews for the book
+        }
 
     
 

@@ -15,7 +15,7 @@ public class Book implements Serializable{
     private double rating = 0.0;
     private int ratingCount = 0;
     private List<String> comments = new ArrayList<>();
-    private List<Review> reviews = new ArrayList<>();
+    private List<Review> reviews;
 
     // Constructor
     public Book(String title, String author, String publisher, String isbn, 
