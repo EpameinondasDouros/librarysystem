@@ -25,8 +25,17 @@ public class StartingPageController {
 
     @FXML
     protected void handleSignUp() {
-        System.out.println("Sign Up button clicked");
-        // Here, you would navigate to the Sign Up page
+        System.out.println("See the 5 Best Rated Books button clicked");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/SignupPage.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Top Books");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

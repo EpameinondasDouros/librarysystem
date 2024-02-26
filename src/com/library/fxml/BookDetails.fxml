@@ -24,15 +24,17 @@
     <Label text="Number Of Copies"/>
     <TextField fx:id="numberOfCopiesField"/>
     
-    <Label text="Comments"/>
-    <ListView fx:id="commentsListView"/>
-    <HBox spacing="10">
+    <Label text="Reviews"/>
+    <ListView fx:id="reviewsListView"/>
+    <!-- <HBox spacing="10">
         <TextField fx:id="commentField" promptText="Enter your comment"/>
         <Label text="Rating:"/>
         <ComboBox fx:id="ratingComboBox"/>
         <Button text="Submit Review" onAction="#submitReview"/>
-    </HBox>
+    </HBox> -->
     <Label fx:id="averageRatingLabel" text="Average Rating: "/>
+
+    
 
     <Button text="Save" onAction="#saveBookDetails"/>  
 </VBox>

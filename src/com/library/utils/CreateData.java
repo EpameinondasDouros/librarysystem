@@ -75,18 +75,19 @@ public class CreateData {
         
         List<User> users = new ArrayList<>();
         
-            User medialab = new User("medialab","medialab","medialab@gmail.com",true);
-            User epadouros = new User("epadouros","ntua2024","epa@gmail.com",true);
-            User johnsmith = new User("johnsmith","jsmith123","john.smith@example.com",false);
-            User maryjones = new User("maryjones","mary1234","mary.jones@example.com",false);
-            User davidbrown = new User("davidbrown","dbrown567","david.brown@example.com",false);
-            User sarahwilson = new User("sarahwilson","sarah987","sarah.wilson@example.com",false);
-            User michaelclark = new User("michaelclark","mikec321","michael.clark@example.com",false);
-            User jenniferlee = new User("jenniferlee","jlee456","jennifer.lee@example.com",false);
-            User robertnguyen = new User("robertnguyen","rob123","robert.nguyen@example.com",false);
-            User emilywang = new User("emilywang","emily789","emily.wang@example.com",false);
-            User christopherlopez = new User("christopherlopez","chrisl555","christopher.lopez@example.com",false);
-            User amandasmith = new User("amandasmith","amanda12","amanda.smith@example.com",false);
+        User medialab = new User("medialab", "medialab", "medialab@gmail.com", true, "Media", "Lab", "22431");
+        User epadouros = new User("epadouros", "ntua2024", "epa@gmail.com", true, "Epa", "Douros", "asdfa");
+        User johnsmith = new User("johnsmith", "jsmith123", "john.smith@example.com", false, "John", "Smith", "323r2");
+        User maryjones = new User("maryjones", "mary1234", "mary.jones@example.com", false, "Mary", "Jones", "23fwd");
+        User davidbrown = new User("davidbrown", "dbrown567", "david.brown@example.com", false, "David", "Brown", "5wesrg23");
+        User sarahwilson = new User("sarahwilson", "sarah987", "sarah.wilson@example.com", false, "Sarah", "Wilson", "6423wf");
+        User michaelclark = new User("michaelclark", "mikec321", "michael.clark@example.com", false, "Michael", "Clark", "q2434");
+        User jenniferlee = new User("jenniferlee", "jlee456", "jennifer.lee@example.com", false, "Jennifer", "Lee", "81234rfwe");
+        User robertnguyen = new User("robertnguyen", "rob123", "robert.nguyen@example.com", false, "Robert", "Nguyen", "9234wf");
+        User emilywang = new User("emilywang", "emily789", "emily.wang@example.com", false, "Emily", "Wang", "104a352fas");
+        User christopherlopez = new User("christopherlopez", "chrisl555", "christopher.lopez@example.com", false, "Christopher", "Lopez", "fa22r3");
+        User amandasmith = new User("amandasmith", "amanda12", "amanda.smith@example.com", false, "Amanda", "Smith", "1f4w2f2");
+        
 
             users.add(medialab);
             users.add(epadouros);

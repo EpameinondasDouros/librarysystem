@@ -4,8 +4,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="searchPage" spacing="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.controller.SearchController">
-    <TextField fx:id="searchField" promptText="Enter book title..."/>
+<VBox fx:id="searchPage" spacing="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.controller.SearchController" prefHeight="600" prefWidth="500">
+    <TextField fx:id="titleField" promptText="Enter book title..."/>
+    <TextField fx:id="authorField" promptText="Enter author name..."/>
+    <TextField fx:id="yearField" promptText="Enter publication year..."/>
     <Button text="Search" onAction="#performSearch"/>
-    <ListView fx:id="resultsListView"/>
+    <ListView fx:id="resultsListView" VBox.vgrow="ALWAYS"/>
 </VBox>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.controller.ShowUsersController" 
+stylesheets="@../css/style.css" prefHeight="600" prefWidth="500">
+    <ListView fx:id="usersListView" VBox.vgrow="ALWAYS"/>
+</VBox>
+

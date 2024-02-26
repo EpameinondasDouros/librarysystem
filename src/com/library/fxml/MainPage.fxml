@@ -34,6 +34,9 @@
                 prefWidth="200" />
         <Button text="Show Reviews" onAction="#showAllReviews"
                 style="-fx-font-weight: bold; -fx-background-color: #2196F3; -fx-text-fill: white; -fx-padding: 10px; -fx-background-radius: 5;" 
+                prefWidth="200" /> 
+         <Button text="Show Users" onAction="#showAllUsers"
+                style="-fx-font-weight: bold; -fx-background-color: #2196F3; -fx-text-fill: white; -fx-padding: 10px; -fx-background-radius: 5;" 
                 prefWidth="200" />                
     </VBox>
 </VBox>

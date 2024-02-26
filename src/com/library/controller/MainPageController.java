@@ -117,4 +117,18 @@ public class MainPageController {
         }
     }
 
+    @FXML
+    protected void showAllUsers() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/ShowUsers.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("All Reviews");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

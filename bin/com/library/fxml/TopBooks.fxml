@@ -2,6 +2,9 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.controller.TopBooksController" spacing="10">
-    <ListView fx:id="booksListView"/>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.controller.TopBooksController" 
+spacing="10" stylesheets="@../css/style.css"
+prefHeight="900" prefWidth="600"
+>
+    <ListView fx:id="booksListView" VBox.vgrow="ALWAYS"/>
 </VBox>

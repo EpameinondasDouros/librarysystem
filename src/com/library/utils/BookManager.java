@@ -53,6 +53,25 @@ public class BookManager {
         }
     }
 
+    public void addUser(String username, String password, String email, boolean admin, String firstname, String lastname, String idnumber) {
+        // Check if the user already exists based on username, email, or idnumber
+        // boolean userExists = users.stream()
+        //                           .anyMatch(user -> user.getUsername().equals(username) ||
+        //                                             user.getEmail().equals(email) ||
+        //                                             user.getidNumber().equals(idnumber));
+
+        // if (!userExists) {
+            User newUser = new User(username, password, email, admin, firstname, lastname, idnumber);
+            users.add(newUser);
+            System.out.println("User added successfully.");
+
+            DataUtil.saveUsers(users, "users.ser");
+        // } else {
+        //     System.out.println("A user with the same username, email, or ID number already exists.");
+        // }
+    }
+
+
     public User getUserByUsername(String username) {
         for (User user : users) {
             if (user.getUsername().equals(username)) {
@@ -87,6 +106,8 @@ public class BookManager {
         }
     }
 
+
+
     public void deleteBook(Book book) {
         if (book != null && books.contains(book)) {
             books.remove(book);
@@ -98,6 +119,10 @@ public class BookManager {
     // Method to get the list of books
     public List<Book> getBooks() {
         return books;
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 
     // Method to add a genre
@@ -114,6 +139,8 @@ public class BookManager {
 
         // Remove all books associated with this genre
         books.removeIf(book -> book.getGenre().getName().equals(genreName));
+
+        loans.removeIf(loan -> loan.getBook().getGenre().getName().equals(genreName));
     }
 
     public List<Genre> getGenres() {
@@ -161,12 +188,17 @@ public class BookManager {
 
     // Method to get all reviews of the book
     public List<Review> getReviews(Book targetBook) {
-            // Filter reviews for the specified book
-            return reviews.stream()
-                        .filter(review -> review.getBook().equals(targetBook))
-                        .collect(Collectors.toList());
+        // System.out.println("BOOOOOOOOOOOOOOOOk review found: ");
+        List<Review> filteredReviews = new ArrayList<>();
+        for (Review review : reviews) {
+            // System.out.println(review.getBook().getTitle().toString() + "    =========           "+ targetBook.getTitle().toString());
+            if (review.getBook().getTitle().toString().equalsIgnoreCase(targetBook.getTitle().toString()) ) {
+                // System.out.println("Matching review14555555555555555555555555555555sdggggggggggggggggggggggggg found: " + review); // Debug statement
+                filteredReviews.add(review);
+            }
         }
-
+        return filteredReviews;
+    }
     public List<Review> getAllReviews() {
         // Filter reviews for the specified book
         return reviews;

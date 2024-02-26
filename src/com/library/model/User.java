@@ -4,17 +4,24 @@ import java.io.Serializable;
 public class User implements Serializable{
     private static final long serialVersionUID = 12345L;
     private String username;
-    private String password; // Consider encryption for real applications
+    private String password;
+    private String firstname;
+    private String lastname;
+    private String idnumber;
+     // Consider encryption for real applications
     private String email;
     private boolean admin;
 
     
     // Constructor
-    public User(String username, String password, String email ,boolean admin) {
+    public User(String username, String password, String email, boolean admin, String firstname, String lastname, String idnumber){
         this.username = username;
         this.password = password;
         this.email = email;
         this.admin = admin;
+        this.lastname=lastname;
+        this.firstname=firstname;
+        this.idnumber=idnumber;
     }
     
     // Getters and Setters
@@ -37,6 +44,16 @@ public class User implements Serializable{
 
     public String getEmail() {
         return email;
+    }
+
+    public String getFirstName() {
+        return firstname;
+    }
+    public String getidNumber() {
+        return idnumber;
+    }
+    public String getLastName() {
+        return lastname;
     }
 
     public void setEmail(String email) {

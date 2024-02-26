@@ -29,19 +29,19 @@ public class BookDetailsController {
     @FXML private TextField commentField;
     @FXML private Label averageRatingLabel;
 
-    @FXML private ListView commentsListView;
+    @FXML private ListView<String> reviewsListView;
     @FXML private ComboBox<Integer> ratingComboBox;
 
-    private ObservableList<String> commentsObservableList = FXCollections.observableArrayList();
+    private ObservableList<Review> commentsObservableList = FXCollections.observableArrayList();
 
 
     // Add more @FXML annotations for other book details as needed
     private Book currentBook; 
 
-        public void initialize() {
-        // Initialize the rating ComboBox with values 1 through 5
-        ratingComboBox.setItems(FXCollections.observableArrayList(1, 2, 3, 4, 5));
-    }
+    //     public void initialize() {
+    //     // Initialize the rating ComboBox with values 1 through 5
+    //     // ratingComboBox.setItems(FXCollections.observableArrayList(1, 2, 3, 4, 5));
+    // }
 
     public void initData(Book book) {
 
@@ -62,7 +62,16 @@ public class BookDetailsController {
         
         // commentsObservableList.setAll(BookManager.getInstance().getReviews(currentBook)); // Assuming getComments returns List<String>
         // commentsListView.setItems(BookManager.getInstance().getReviews(currentBook).toString().toList);
+        List<Review> reviews = BookManager.getInstance().getReviews(book);
 
+        for (Review review : reviews) {
+            System.out.println(review);
+        }
+
+        reviewsListView.getItems().clear(); // Clear existing items if necessary
+        for (Review review : reviews) {
+            reviewsListView.getItems().add(review.toString());
+        }
         // Assuming getRating returns a double or similar
         averageRatingLabel.setText(String.format("Average Rating: %.2f", book.getRating()));
     }
@@ -87,31 +96,31 @@ public class BookDetailsController {
         }
     }
 
-    @FXML
-    private void submitReview() {
-        String comment = commentField.getText();
-        Integer rating = ratingComboBox.getValue();
+    // @FXML
+    // private void submitReview() {
+    //     String comment = commentField.getText();
+    //     Integer rating = ratingComboBox.getValue();
 
-        if (comment.isEmpty() || rating == null) {
-            // Handle the case where either comment or rating is not provided
-            System.out.println("Both comment and rating are required.");
-            return;
-        }
+    //     if (comment.isEmpty() || rating == null) {
+    //         // Handle the case where either comment or rating is not provided
+    //         System.out.println("Both comment and rating are required.");
+    //         return;
+    //     }
 
-        // Assuming addReview method exists and properly updates the book with a new review
-        BookManager.getInstance().addReview(comment, rating,SessionManager.getInstance().getCurrentUser(), currentBook); // currentUser needs to be defined based on your user management logic
-        List<Review> reviews=BookManager.getInstance().getAllReviews();
-        // Optionally, update the UI to reflect the new review
-        // For example, refresh the list of reviews and update the average rating label
-        averageRatingLabel.setText(String.format("Average Rating: %.2f", BookManager.getInstance().calculateAverageRating(currentBook,reviews)));
+    //     // Assuming addReview method exists and properly updates the book with a new review
+    //     BookManager.getInstance().addReview(comment, rating,SessionManager.getInstance().getCurrentUser(), currentBook); // currentUser needs to be defined based on your user management logic
+    //     List<Review> reviews=BookManager.getInstance().getAllReviews();
+    //     // Optionally, update the UI to reflect the new review
+    //     // For example, refresh the list of reviews and update the average rating label
+    //     averageRatingLabel.setText(String.format("Average Rating: %.2f", BookManager.getInstance().calculateAverageRating(currentBook,reviews)));
 
-        currentBook.setRating(BookManager.getInstance().calculateAverageRating(currentBook,reviews),-1);
+    //     currentBook.setRating(BookManager.getInstance().calculateAverageRating(currentBook,reviews),-1);
 
-        // Clear the input fields after submission
-        commentField.clear();
-        ratingComboBox.getSelectionModel().clearSelection();
-        // updateCommentsListView(currentBook);
-    }
+    //     // Clear the input fields after submission
+    //     commentField.clear();
+    //     ratingComboBox.getSelectionModel().clearSelection();
+    //     // updateCommentsListView(currentBook);
+    // }
 
 
 
